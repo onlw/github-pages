@@ -74,7 +74,7 @@ cp -r ../../deploy_actions/github_actions/.github "${blog_folder}"
 echo_green "push hexo to github ..."
 
 cd ${blog_folder}
-github_pages_repository_url=git@github.com:spaco/"${github_pages_repository_name}".git
+github_pages_repository_url=git@github.com:"${github_username}/${github_pages_repository_name}".git
 
 # push to github
 git init

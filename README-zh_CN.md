@@ -11,7 +11,7 @@ English | [简体中文](./README-zh_CN.md)
 - 🎨 Powerful theme customization for Hexo.
 - 🌈 Support for Hugo
 - 📦 Support for jekyll
-ss
+
 ## 🖥 Environment Support
 
 ### Hexo
@@ -21,12 +21,13 @@ ss
 ## 📦 Install
 
 ```bash
-git clone git@github.com:spaco/github-pages.git ./app/hexo
+git clone git@github.com:spaco/github-pages.git
 ```
 
 ## 🔨 Usage
 
 ```bash
+cd github-pages
 ./app/hexo/install.sh -h
 ```
 
@@ -43,7 +44,7 @@ install.sh -f <blog_folder> -u <github_username> -s <github_personal_access_toke
 Example:
 
 ```bash
-./app/hexo/install.sh -f  ~/blog/hexo -u spaco -s GITHUB_PERSONAL_ACCESS_TOKEN
+./app/hexo/install.sh -f /Users/spaco/blog/hexo -u spaco -s GITHUB_PERSONAL_ACCESS_TOKEN
 ```
 
 ## 🔗 Links
@@ -57,6 +58,8 @@ Example:
 ## ⌨️ Development
 
 Use Gitpod, a free online dev environment for GitHub.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spaco/github-pages)
 
 ## 🤝 Contributing [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
