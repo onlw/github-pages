@@ -68,17 +68,19 @@ echo_green "init hexo folder ..."
 hexo init "${blog_folder}"
 
 # copy github actions script to blog_folder
-cd ${script_file_folder}
+# shellcheck disable=SC2164
+cd "${script_file_folder}"
 cp -r ../../deploy_actions/github_actions/.github "${blog_folder}"
 
 echo_green "push hexo to github ..."
 
-cd ${blog_folder}
+# shellcheck disable=SC2164
+cd "${blog_folder}"
 github_pages_repository_url=git@github.com:"${github_username}/${github_pages_repository_name}".git
 
 # push to github
 git init
-git remote add origin ${github_pages_repository_url}
+git remote add origin "${github_pages_repository_url}"
 git pull origin master
 git branch --set-upstream-to=origin/master
 git add .
