@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source ../../util/terminal_font_color.sh
 
 function confirm() {
     read -r -p "${1:-Are you sure?} [y/N] " response
@@ -13,6 +12,23 @@ function confirm() {
         ;;
     esac
 }
+
+
+## blue to echo
+function echo_blue(){
+    echo -e "\033[34m[ $1 ]\033[0m"
+}
+
+## green to echo
+function echo_green(){
+    echo -e "\033[32m[ $1 ]\033[0m"
+}
+
+## Error to warning with blink
+function echo_red(){
+    echo -e "\033[31m\033[01m\033[05m[ $1 ]\033[0m"
+}
+
 
 # properties
 script_file_folder=$(pwd)
@@ -38,7 +54,7 @@ while getopts "f:s:u:h" opts; do
         github_personal_access_token=${OPTARG}
         ;;
     u)
-        github_username=${OPTARG}
+        username=${OPTARG}
         ;;
     h)
         usage
@@ -51,11 +67,12 @@ while getopts "f:s:u:h" opts; do
     esac
 done
 
-# create github pages repository
-github_pages_repository_name=${github_username}.github.io
-echo_green "creating github repository ${github_pages_repository_name} ..."
-curl -u "${github_username}:${github_personal_access_token}" https://api.github.com/user/repos -d '{"name":"'"${github_pages_repository_name}"'","auto_init":true}'
-echo_green "github repository ${github_pages_repository_name} has been created"
+# create github pages repository use default
+repository_name=${username}.github.io
+echo_green "creating github repository ${repository_name} ..."
+
+curl -u "${username}:${github_personal_access_token}" https://api.github.com/user/repos -d '{"name":"'"${repository_name}"'","auto_init":true}'
+echo_green "github repository ${repository_name} has been created"
 
 mkdir -p "${blog_folder}"
 
@@ -76,7 +93,7 @@ echo_green "push hexo to github ..."
 
 # shellcheck disable=SC2164
 cd "${blog_folder}"
-github_pages_repository_url=git@github.com:"${github_username}/${github_pages_repository_name}".git
+github_pages_repository_url=git@github.com:"${username}/${repository_name}".git
 
 # push to github
 git init
@@ -87,7 +104,6 @@ git add .
 git commit -m "first commit"
 git checkout -b gh_page
 git push -u origin gh_page
-
 
 
 
